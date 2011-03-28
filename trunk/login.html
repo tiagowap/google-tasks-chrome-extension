@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <script type="text/javascript" src="tasksapi.js"></script>
+    <script type="text/javascript">
+      function onSubmit() {
+	alert(login(document.getElementById("user").value,
+	      document.getElementById("password").value));
+      }
+    </script>
+  </head>
+  <body>
+    <form method="POST" action="javascript:onSubmit()" >
+    <label for="user">Username:</label>
+    <input type="text" id="user" name="user" />
+    <br/>
+    <label for="user">Password:</label>
+    <input type="password" id="password" name="password" />
+    <br/>
+    <input type="submit" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script src="chrome_ex_oauthsimple.js"></script>
+<script src="chrome_ex_oauth.js"></script>
+<script type="text/javascript">
+var oauth = ChromeExOAuth.initBackgroundPage({
+  'request_url': 'https://www.google.com/accounts/OAuthGetRequestToken',
+  'authorize_url': 'https://www.google.com/accounts/OAuthAuthorizeToken',
+  'access_url': 'https://www.google.com/accounts/OAuthGetAccessToken',
+  'consumer_key': 'anonymous',
+  'consumer_secret': 'anonymous',
+  'scope': 'https://www.googleapis.com/auth/tasks',
+  'app_name': 'Tasks Extension'
+});
+
+oauth.authorize(function() {});
+</script>
+<script src="tasksapi.js"></script>
+<script src="menus.js"></script>
+<script src="omnibox.js"></script>
