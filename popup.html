@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Your Current Task</title>
+<style>
+* {
+  font: 12px Verdana, Geneva, sans-serif;
+}
+body {
+  width:300px;
+  margin: 0;
+  padding: 0;
+}
+article {
+  padding: 10px 5px;
+  overflow-y: auto;
+}
+.hint {
+  font-style: italic;
+  color: gray;
+}
+.small {
+  font-size: 10px;
+}
+</style>
+<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="popup.js"></script>
+</head>
+<body class="default" onload="setTimeout(initPopup, 500)">
+<div id="warp">
+  <article id="content">
+    <input id="task_input" style="width:80%" type="text"
+           value="New task..." class="hint"
+           onchange="submitNewTask()"
+           onclick="initPopup()"
+           onkeydown="onEditTask()">
+    <input type="button" value="Add" onclick="submitNewTask();">
+    <a class="small" href="javascript:navigateNew('https://mail.google.com/tasks/')">Go to Google Tasks</a>
+  </article>
+  <div id="Tasklist"> </div>
+</div>
+</body>
+</html>
