@@ -21,43 +21,14 @@ chrome.tabs.getSelected(null, function(tab) {
   currentTabId = tab.id;
 });
 
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-  switch (request.type) {
-    case 'selectionResult':
-      initPopupDone(request.selection);
-      break;
-  }
-});
-
-function doAddNewTask(text) {
-  text = text.replace(/^\s+|\s+$/g, '');
-  if (!text)
-    return;
-  var timeStamp = Date.now();
-  var taskObject = {
-    url: currentVisitingURL,
-    title: text,
-    content: text,
-    timeStamp: timeStamp
-  };
-  backgroundPage.addTask(taskObject);
-  chrome.tabs.update(currentTabId, { selected: true });
-}
-
-function resetTaskInput() {
-  var e = document.getElementById('task_input');
-  e.style.fontStyle = 'normal';
-  e.style.color = 'black';
-}
-
 function initPopup() {
   chrome.tabs.sendRequest(currentTabId, {
     type: 'getSelectionText',
-  }, function() { });
+  }, fillInput);
 }
 
-function initPopupDone(text) {
-  var e = document.getElementById('task_input');
+function fillInput(text) {
+  var e = document.getElementById('task-input');
   if (text) {
     e.value = text;
     resetTaskInput();
@@ -65,14 +36,31 @@ function initPopupDone(text) {
   e.focus();
 }
 
+function resetTaskInput() {
+  var e = document.getElementById('task-input');
+  e.style.fontStyle = 'normal';
+  e.style.color = 'black';
+}
+
 function onEditTask() {
   resetTaskInput();
 }
 
 function submitNewTask() {
-  var e = document.getElementById('task_input');
+  var e = document.getElementById('task-input');
   try {
-    doAddNewTask(e.value);
+    text = text.replace(/^\s+|\s+$/g, '');
+    if (!text)
+      return;
+    var timeStamp = Date.now();
+    var taskObject = {
+      url: currentVisitingURL,
+      title: text,
+      content: text,
+      timeStamp: timeStamp
+    };
+    backgroundPage.addTask(taskObject);
+    chrome.tabs.update(currentTabId, { selected: true });
   } catch (exception) {
     e.value = '';
     return;
@@ -80,6 +68,6 @@ function submitNewTask() {
   window.close();
 }
 
-function navigateNew(url) {
+function openTab(url) {
   chrome.tabs.create({url: url});
 }

@@ -12,22 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getCurrentSelectionText() {
-  var selectionText = window.getSelection().toString();
-
-  chrome.extension.sendRequest({
-    type: 'selectionResult',
-    selection: selectionText,
-  }, function() {});
-  console.log("sent selection results");
-}
-
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-  console.log("on request");
-  switch (request.type) {
-    case 'getSelectionText':
-      console.log("get request of getSelectionText");
-      getCurrentSelectionText();
-      break;
+  if (request.type == 'getSelectionText') {
+    sendResponse(window.getSelection().toString());
   }
 });

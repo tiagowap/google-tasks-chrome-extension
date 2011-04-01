@@ -24,35 +24,45 @@ limitations under the License.
 * {
   font: 12px Verdana, Geneva, sans-serif;
 }
+
 body {
-  width:300px;
+  width: 300px;
   margin: 0;
   padding: 0;
 }
+
 article {
   padding: 10px 5px;
   overflow-y: auto;
 }
+
 .hint {
   font-style: italic;
   color: gray;
 }
-.small {
-  font-size: 10px;
+
+.embedded-list {
+  border: 0;
+  height: 500px;
 }
 </style>
+
 <script type="text/javascript" src="third_party/jquery/jquery-1.5.1.min.js"></script>
 <script type="text/javascript" src="popup.js"></script>
 </head>
-<body class="default" onload="setTimeout(initPopup, 500)">
-<div id="warp">
-  <article id="content">
-    <input id="task_input" style="width:80%" type="text" value="New task..." class="hint"
+<body class="default" onload="setTimeout(initPopup, 0)">
+<div>
+  <div id="content">
+    <input id="task-input" style="width:80%" type="text" value="New task..." class="hint"
         onchange="submitNewTask()" onclick="initPopup()" onkeydown="onEditTask()">
     <input type="button" value="Add" onclick="submitNewTask()">
-    <a class="small" href="javascript:navigateNew('https://mail.google.com/tasks/desktop')">Go to Google Tasks</a>
-  </article>
-  <div id="Tasklist"> </div>
+  </div>
+  <div>
+    <a class="new-tab-link" href="javascript:openTab('https://mail.google.com/tasks/desktop')">Open in new tab</a>
+  </div>
+  <div>
+    <iframe class='embedded-list' src="https://mail.google.com/tasks/ig"></iframe>
+  </div>
 </div>
 </body>
 </html>
