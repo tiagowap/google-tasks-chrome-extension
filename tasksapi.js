@@ -14,9 +14,10 @@
 
 var NOTIFICATION_TIMEOUT = 3000;
 
-function notify(logo, title) {
+function notify(logo, title, opt_body) {
+  var body = opt_body || '';
   var notification = webkitNotifications.createNotification(logo,
-      title, '');
+      title, body);
   notification.show();
   var cb = function() {
     notification.cancel();
@@ -24,10 +25,10 @@ function notify(logo, title) {
   window.setTimeout(cb, NOTIFICATION_TIMEOUT);
 }
 
-function notifySuccess() {
+function notifySuccess(body) {
   var logo = 'images/tasks-48x48.png';
   var title = 'Task added successfully!';
-  notify(logo, title);
+  notify(logo, title, body);
 }
 
 function notifyFailure(msg, code) {
@@ -35,15 +36,6 @@ function notifyFailure(msg, code) {
   var logo = 'images/tasks-error-48x48.png';
   var title = msg + ' (' + code + ')';
   notify(logo, title);
-}
-
-function addDone(resp, xhr) {
-  if (xhr.status != 200) {
-    notifyFailure('Couldn\'t add task.', xhr.status);
-    return;
-  }
-
-  notifySuccess();
 }
 
 function addTask(task) {
@@ -55,6 +47,16 @@ function addTask(task) {
     },
     'body': JSON.stringify(task)
   };
+
+  var addDone = function(resp, xhr) {
+    if (xhr.status != 200) {
+      notifyFailure('Couldn\'t add task.', xhr.status);
+      return;
+    }
+
+    notifySuccess(task['title']);
+  }
+
   oauth.sendSignedRequest(url, addDone, req);
 }
 
