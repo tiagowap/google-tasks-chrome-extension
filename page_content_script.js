@@ -18,7 +18,7 @@ function getCurrentSelectionText() {
   chrome.extension.sendRequest({
     type: 'selectionResult',
     selection: selectionText,
-  }, function() { });
+  }, function() {});
   console.log("sent selection results");
 }
 
