@@ -4,9 +4,9 @@ function addDone(resp, xhr) {
 
   // TODO: redirect to login UI flow and retry
   if (xhr.status != 200) {
-    console.log('addTask request failed: HTTP ' + xhr.status);
+    notificationTitle = 'addTask request failed: HTTP ' + xhr.status;
     logo = 'images/tasks-error-48x48.png';
-    notificationTitle = "Adding task failed!";
+    //notificationTitle = "Adding task failed!";
   }
   else {
     logo = 'images/tasks-48x48.png';
@@ -18,7 +18,7 @@ function addDone(resp, xhr) {
 }
 
 function addTask(task) {
-    var url = "https://www.googleapis.com/tasks/v1alpha/lists/@default/tasks";
+    var url = "https://www.googleapis.com/tasks/v1/lists/@default/tasks";
     var req = {
       'method': 'POST',
       'headers': {
@@ -30,7 +30,7 @@ function addTask(task) {
 }
 
 function getTasks(cb) {
-    var url = "https://www.googleapis.com/tasks/v1alpha/lists/@default/tasks";
+    var url = "https://www.googleapis.com/tasks/v1/lists/@default/tasks";
     var req = {
       'method': 'GET',
       'headers': {
