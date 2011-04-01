@@ -26,7 +26,8 @@ var oauth = ChromeExOAuth.initBackgroundPage({
   'consumer_key': 'anonymous',
   'consumer_secret': 'anonymous',
   'scope': 'https://www.googleapis.com/auth/tasks',
-  'app_name': 'Tasks Extension'
+  'app_name': 'Tasks Extension',
+  'callback_page': 'third_party/chromium/chrome_ex_oauth.html'
 });
 
 oauth.authorize(function() {});
