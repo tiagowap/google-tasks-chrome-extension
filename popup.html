@@ -47,13 +47,10 @@ article {
 <body class="default" onload="setTimeout(initPopup, 500)">
 <div id="warp">
   <article id="content">
-    <input id="task_input" style="width:80%" type="text"
-           value="New task..." class="hint"
-           onchange="submitNewTask()"
-           onclick="initPopup()"
-           onkeydown="onEditTask()">
-    <input type="button" value="Add" onclick="submitNewTask();">
-    <a class="small" href="javascript:navigateNew('https://mail.google.com/tasks/')">Go to Google Tasks</a>
+    <input id="task_input" style="width:80%" type="text" value="New task..." class="hint"
+        onchange="submitNewTask()" onclick="initPopup()" onkeydown="onEditTask()">
+    <input type="button" value="Add" onclick="submitNewTask()">
+    <a class="small" href="javascript:navigateNew('https://mail.google.com/tasks/desktop')">Go to Google Tasks</a>
   </article>
   <div id="Tasklist"> </div>
 </div>
