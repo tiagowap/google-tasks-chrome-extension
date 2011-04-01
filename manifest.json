@@ -14,19 +14,6 @@
   "icons": {
     "16": "images/tasks-16x16.png"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*",
-        "file://*"
-      ],
-      "js": [
-        "page_content_script.js"
-      ],
-      "run_at": "document_start"
-    }
-  ],
   "permissions": [
     "contextMenus",
     "notifications",
