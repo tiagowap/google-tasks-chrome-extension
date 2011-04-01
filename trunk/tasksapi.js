@@ -19,10 +19,10 @@ function notify(logo, title, opt_body) {
   var notification = webkitNotifications.createNotification(logo,
       title, body);
   notification.show();
-  var cb = function() {
+  var clear = function() {
     notification.cancel();
   }
-  window.setTimeout(cb, NOTIFICATION_TIMEOUT);
+  window.setTimeout(clear, NOTIFICATION_TIMEOUT);
 }
 
 function notifySuccess(body) {
