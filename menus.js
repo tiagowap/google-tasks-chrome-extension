@@ -14,7 +14,7 @@
 
 function addTaskClickHandler(info, tab) {
   var text = info['selectionText'];
-  var notes = info['pageUrl']
+  var notes = info['pageUrl'];
   addTask({
       'title': text,
       'notes': notes
